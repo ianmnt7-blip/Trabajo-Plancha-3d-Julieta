@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visor 3D y Realidad Aumentada</title>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: #f4f5f7;
+      color: #1f2937;
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+    }
+
+    header {
+      padding: 1rem;
+      text-align: center;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    header p {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-top: 0.2rem;
+    }
+
+    model-viewer {
+      flex: 1;
+      width: 100%;
+      background-color: #eef0f4;
+      --poster-color: transparent;
+    }
+
+    #ar-button {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #111827;
+      color: #ffffff;
+      border: none;
+      border-radius: 9999px;
+      padding: 14px 26px;
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    #ar-button:active {
+      transform: translateX(-50%) scale(0.97);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Visualizador 3D Interactivo</h1>
+    <p>Deslizá para rotar • Pellizcá para hacer zoom</p>
+  </header>
+
+  <model-viewer
+    src="planchita.glb"
+    ios-src="planchita.usdz"
+    alt="Modelado 3D interactivo"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    ar-scale="auto"
+    camera-controls
+    touch-action="pan-y"
+    auto-rotate
+    shadow-intensity="1"
+    exposure="1">
+
+    <button slot="ar-button" id="ar-button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/>
+        <path d="M12 12l8-4.5"/>
+        <path d="M12 12v9"/>
+        <path d="M12 12L4 7.5"/>
+      </svg>
+      Ver en tu espacio (AR)
+    </button>
+
+  </model-viewer>
+
+</body>
+</html>
